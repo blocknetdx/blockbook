@@ -5,7 +5,6 @@ on:
     branches:
       - master
       - dev
-      - test
     tags:
       - "v**"
   pull_request:
@@ -30,11 +29,11 @@ jobs:
 
       - name: Build mainnet packages
         run: |
-          make deb-blocknet
+          make BASE_IMAGE=ubuntu:20.04 PORTABLE=1 deb-blocknet
 
       - name: Build testnet packages
         run: |
-          make deb-blocknet_testnet
+          make BASE_IMAGE=ubuntu:20.04 PORTABLE=1 deb-blocknet_testnet
 
       - uses: actions/upload-artifact@v3
         with:
